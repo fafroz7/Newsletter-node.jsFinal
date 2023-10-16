@@ -1,11 +1,12 @@
 
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
 
 const app = express();
+//console.log("token", process.env.APIKEY);
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -40,7 +41,8 @@ app.post("/", function(req, res){
 
       const options ={
        method : "POST",
-       auth: "farhana:c36a3a7b628193711f928e58197a676f-us21"
+       auth: "farhana:"+process.env.APIKEY
+
      }
 
       const request =  https.request(url, options, function(response){
@@ -82,6 +84,7 @@ app.listen(process.env.PORT || 3000, function(){
 
 
 //API KEY
-//eac25fa3f135112d0167ce3769fe2d1a-us21
+//eac25fa3f135112d0167ce3769fe2d1a-us21-disabled
 //list id
 // 1502307a83
+// /c36a3a7b628193711f928e58197a676f-us21
